@@ -1,0 +1,57 @@
+[
+    {
+        "id" : 1,
+        "nombre" : "Camel Up",
+        "precio" : 19990,
+        "image" : "assets/images/1.png"
+    },
+    {
+        "id" : 2,
+        "nombre" : "Casting Shadows",
+        "precio" : 21300,
+        "image" : "assets/images/2.png"
+    },
+    {
+        "id" : 3,
+        "nombre" : "Danger Danger",
+        "precio" : 21900,
+        "image" : "assets/images/3.png"
+    },
+
+    {
+        "id" : 4,
+        "nombre" : "Family FaceOff",
+        "precio" : 19990,
+        "image" : "assets/images/4.png"
+    },
+    {
+        "id" : 5,
+        "nombre" : "HeadTrip",
+        "precio" : 19990,
+        "image" : "assets/images/5.png"
+    },
+    {
+        "id" : 6,
+        "nombre" : "HotBox",
+        "precio" : 19990,
+        "image" : "assets/images/6.png"
+    },
+    {
+        "id" : 7,
+        "nombre" : "HotOnes",
+        "precio" : 19990,
+        "image" : "assets/images/7.png"
+    },
+    {
+        "id" : 8,
+        "nombre" : "Hues and Cues",
+        "precio" : 19990,
+        "image" : "assets/images/8.png"
+    },
+    {
+        "id" : 9,
+        "nombre" : "Match MadNess",
+        "precio" : 19990,
+        "image" : "assets/images/9.png"
+    }
+]
