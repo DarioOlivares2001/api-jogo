@@ -1,11 +1,11 @@
 [
   {
     "id": 2,
-    "username": "dario",
-    "email": "dario@gmail.com",
-    "password": "123456",
+    "username": "Dario Olivares Actualizado",
+    "email": "dario_actualizado@gmail.com",
+    "password": "nueva_contraseña",
     "birthdate": "1992-02-02",
-    "address": "Address 2"
+    "address": "Nueva Dirección 2"
   },
   {
     "id": 1720113157165,
