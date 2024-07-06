@@ -83,11 +83,10 @@ app.post('/products', (req, res) => {
   res.status(201).json(newProduct);
 });
 
-app.put('/products/:id', (req, res) => {
+app.post('/products/update', (req, res) => {
   const products = readProductsFromFile();
-  const productId = parseInt(req.params.id);
   const updatedProduct = req.body;
-  const index = products.findIndex(p => p.id === productId);
+  const index = products.findIndex(p => p.id === updatedProduct.id);
   if (index !== -1) {
     products[index] = updatedProduct;
     writeProductsToFile(products);
@@ -97,12 +96,26 @@ app.put('/products/:id', (req, res) => {
   }
 });
 
-app.delete('/products/:id', (req, res) => {
-  let products = readProductsFromFile();
-  const productId = parseInt(req.params.id);
-  products = products.filter(p => p.id !== productId);
-  writeProductsToFile(products);
-  res.status(204).end();
+app.post('/products/delete', (req, res) => {
+  try {
+    let products = readProductsFromFile();
+    const productId = parseInt(req.body.id);
+    console.log('Deleting product with id:', productId);
+    const initialLength = products.length;
+
+    products = products.filter(p => p.id !== productId);
+
+    if (products.length === initialLength) {
+      return res.status(404).json({ message: 'Product not found' });
+    }
+
+    writeProductsToFile(products);
+    console.log('Product deleted successfully');
+    res.status(204).end();
+  } catch (error) {
+    console.error('Error deleting product:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
 });
 
 const port = 3000;
