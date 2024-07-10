@@ -10,6 +10,7 @@ app.use(cors());
 
 const usersFilePath = path.join(__dirname, 'data', 'users.json');
 const productsFilePath = path.join(__dirname, 'data', 'productos.json');
+const invoicesFilePath = path.join(__dirname, 'data', 'invoices.json');
 
 // Leer usuarios del archivo JSON
 function readUsersFromFile() {
@@ -29,6 +30,16 @@ function readProductsFromFile() {
 // Escribir productos en el archivo JSON
 function writeProductsToFile(products) {
   fs.writeFileSync(productsFilePath, JSON.stringify(products, null, 2));
+}
+
+// Leer facturas del archivo JSON
+function readInvoicesFromFile() {
+  return JSON.parse(fs.readFileSync(invoicesFilePath, 'utf8'));
+}
+
+// Escribir facturas en el archivo JSON
+function writeInvoicesToFile(invoices) {
+  fs.writeFileSync(invoicesFilePath, JSON.stringify(invoices, null, 2));
 }
 
 // Rutas para usuarios
@@ -116,6 +127,22 @@ app.post('/products/delete', (req, res) => {
     console.error('Error deleting product:', error);
     res.status(500).json({ message: 'Internal Server Error' });
   }
+});
+
+// Ruta para guardar facturas
+app.post('/invoices', (req, res) => {
+  const invoices = readInvoicesFromFile();
+  const newInvoice = req.body;
+  newInvoice.id = invoices.length > 0 ? Math.max(...invoices.map(i => i.id)) + 1 : 1;
+  invoices.push(newInvoice);
+  writeInvoicesToFile(invoices);
+  res.status(201).json(newInvoice);
+});
+
+// Ruta para listar facturas
+app.get('/invoices', (req, res) => {
+  const invoices = readInvoicesFromFile();
+  res.json(invoices);
 });
 
 const port = 3000;
